@@ -1,0 +1,31 @@
+<ifModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 seconds"
+  ExpiresByType image/gif "access plus 2592000 seconds"
+  ExpiresByType image/jpeg "access plus 2592000 seconds"
+  ExpiresByType image/png "access plus 2592000 seconds"
+</ifModule>
+
+### config OVH
+SetEnv PHP_VER 5
+SetEnv REGISTER_GLOBALS 0
+
+SetEnv REGISTER_GLOBALS 0
+SetEnv ZEND_OPTIMIZER 1
+
+###Empêche le listage des fichiers
+Options -Indexes
+
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule conf/ - [F]
+
+RewriteRule ^images/(.*)$ /~t4t00457/admin_market/prod/src/admin/img/$1 [L]
+RewriteRule ^imgmutu/(.*)$ /~t4t00457/admin_market/prod/src/admin/img/$1 [L]
+RewriteRule ^admin_market/ckeditor/plugins/ckfinder/(.*)$ ckfinder/$1 [L]
+RewriteRule ^admin_market/ckeditor/(.*)$ /~t4t00457/admin_market/prod/src/admin/js/ckeditor/$1 [L]
+RewriteRule ^admin_market/img/(.*)$ /~t4t00457/admin_market/prod/src/admin/img/$1 [L]
+RewriteRule ^admin_market/(.*)\.(js|css)$ /~t4t00457/admin_market/prod/src/admin/$2/$1.$2 [L]
+
+RewriteRule ^([^/]*)$ _include.php?f=$1 [QSA,L]

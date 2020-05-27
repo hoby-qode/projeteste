@@ -1,0 +1,58 @@
+<ifModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 seconds"
+  ExpiresByType image/gif "access plus 2592000 seconds"
+  ExpiresByType image/jpeg "access plus 2592000 seconds"
+  ExpiresByType image/png "access plus 2592000 seconds"
+</ifModule>
+
+### config OVH
+SetEnv PHP_VER 5
+SetEnv REGISTER_GLOBALS 0
+
+SetEnv REGISTER_GLOBALS 0
+SetEnv ZEND_OPTIMIZER 1
+
+Options All -Indexes
+
+RewriteEngine On 
+RewriteBase /
+
+# force les www devant le domaine
+RewriteCond %{HTTP_HOST} !^www\.projetest.arobiz.net$ 
+RewriteRule ^(.*) http://www.projetest.arobiz.net/$1 [QSA,L,R=301]
+# RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# RewriteCond %{HTTPS} !on
+# RewriteRule ^(.*) https://www.projetest.arobiz.net/$1 [QSA,L,R=301]
+
+RewriteRule ^imgmutu/(.*)$ /~t4t00457/admin_market/prod/src/imgmutu/$1 [L]
+RewriteRule ^imgredac/(.*)$ http://ns380-appli.sogexpert.com/~tytoon/_redacteur/_includes/imgredac/$1 [L]
+RewriteRule ^src/(.*)$ /~t4t00457/admin_market/prod/src/$1 [L]
+
+RewriteRule ^(.*-i[0-9]+\.html)$ index.php?s=$1 [QSA,L]
+RewriteRule avis-diagnostiqueur-(.+)\.html$ livre-d-or.php [L]
+RewriteRule tarif-diagnostic-(.+)\.html$ promotion.php [L]
+# actualité
+RewriteRule (.*)-a([0-9]+)\.html$ actualite-detail.php?id=$2 [L]
+RewriteRule ^expertises-immobilieres-(.+)-([0-9]+)\.html$ actualites.php?page=$2 [L]
+RewriteRule ^expertises-immobilieres-(.+)\.html$ actualites.php [L]
+
+# page générée
+RewriteRule ^index.html$ index.html [QSA,L]
+RewriteRule ^([^/]+\.html)$ index.php?s=$1 [QSA,L]
+
+RewriteRule sitemap.xml$ sitemap.php [QSA,L]
+
+RewriteRule captcha.png$ captcha.php [L]
+
+#php_flag display_errors on
+
+<Files configuration.php>
+ deny from all
+</Files>
+
+# compression des fichiers
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript application/x-httpd-php
+
+ErrorDocument 404 /~t4t00457/admin_market/prod/src/404.php

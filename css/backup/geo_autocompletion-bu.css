@@ -1,0 +1,43 @@
+.left-bold{border-left: 3px solid #000!important;}
+.set_adresse, .set_coord { display: none; margin-top: 10px;}
+#addModalCarottage .form-control-feedback {position: static; width: 100%; text-align: left; color: red; display: none;}
+#addModalCarottage .form-group {margin-bottom : 0;}
+#addModalCarottage .form-control-danger {border-color: red;}
+
+
+.div_autocomplete ul {
+    list-style-type: none;
+    padding: 0;
+    margin:0;
+}
+
+.div_autocomplete ul li{
+    border-bottom: 1px solid lightgrey;
+}
+
+.div_autocomplete ul :last-child{
+    border-bottom: 0;
+}
+
+.div_autocomplete ul li a{
+    text-decoration: none;
+    color:black;
+    display: inline-block;
+    height:100%;
+    width:100%;
+    padding:0.5em;
+}
+
+.div_autocomplete ul li:hover{
+    cursor:pointer;
+    background-color:lightgrey;
+}
+
+.div_autocomplete {
+    display:none;
+    border: 1px solid grey;
+    position: absolute;
+    z-index: 9999;
+    background-color: white;
+    width: 92.5%;
+}
